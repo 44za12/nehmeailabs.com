@@ -11,6 +11,44 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+const SITE_ORIGIN = 'https://nehmeailabs.com';
+
+function setMeta(name, content) {
+    const el = document.querySelector(`meta[name="${name}"]`);
+    if (el) el.setAttribute('content', content);
+}
+
+function setOg(property, content) {
+    const el = document.querySelector(`meta[property="${property}"]`);
+    if (el) el.setAttribute('content', content);
+}
+
+function setCanonical(href) {
+    const el = document.querySelector('link[rel="canonical"]');
+    if (el) el.setAttribute('href', href);
+}
+
+function toPlainText(markdown) {
+    return markdown
+        // remove code blocks
+        .replace(/```[\s\S]*?```/g, ' ')
+        // remove images
+        .replace(/!\[[^\]]*]\([^)]*\)/g, ' ')
+        // convert links to text
+        .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
+        // remove headings/formatting
+        .replace(/^#{1,6}\s+/gm, '')
+        .replace(/[*_~`]/g, '')
+        .replace(/\s+/g, ' ')
+        .trim();
+}
+
+function makeDescription(body, fallback) {
+    const text = toPlainText(body || '');
+    const desc = text || fallback || '';
+    return desc.length > 170 ? desc.slice(0, 167).trimEnd() + '…' : desc;
+}
+
 async function fetchPosts() {
     try {
         // In a real scenario, this would be a call to a CMS or a static site generator's index
@@ -70,6 +108,18 @@ async function loadPost() {
         const { attributes, body } = parseFrontmatter(markdown);
 
         document.title = `${attributes.title} | Nehme AI Labs`;
+
+        const canonicalUrl = `${SITE_ORIGIN}/post.html?slug=${encodeURIComponent(slug)}`;
+        const description = makeDescription(body, 'Insights from Nehme AI Labs on on‑prem GenAI architecture, efficiency, reliability engineering, and AI systems.');
+
+        setCanonical(canonicalUrl);
+        setMeta('description', description);
+        setOg('og:title', `${attributes.title} | Nehme AI Labs`);
+        setOg('og:description', description);
+        setOg('og:url', canonicalUrl);
+        setOg('og:type', 'article');
+        setMeta('twitter:title', `${attributes.title} | Nehme AI Labs`);
+        setMeta('twitter:description', description);
         
         const postHeader = document.querySelector('.post-header');
         const postContent = document.getElementById('post-content');
