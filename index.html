@@ -9,8 +9,28 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <script type="text/javascript">
+      window._mfq = window._mfq || [];
+      (function() {
+        var mf = document.createElement("script");
+        mf.type = "text/javascript"; mf.defer = true;
+        mf.src = "//cdn.mouseflow.com/projects/781aa7b5-afe9-4aef-95a0-47d1913e132f.js";
+        document.getElementsByTagName("head")[0].appendChild(mf);
+      })();
+    </script>
 </head>
 <body>
+    <header class="main-header">
+        <div class="container">
+            <a href="index.html" class="logo">Nehme AI Labs</a>
+            <nav class="main-nav">
+                <a href="index.html">Home</a>
+                <a href="flashcheck.html">FlashCheck</a>
+                <a href="blog.html">Blog</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
     <!-- Section 1: The Hook -->
     <section id="hero" class="hero-section">
         <div class="hero-background">
@@ -76,47 +96,39 @@
         </div>
     </section>
 
-    <!-- Section 4: Social Proof -->
-    <section id="architect" class="content-section">
+    <!-- Section 3.5: The New SOTA -->
+    <section id="sota" class="content-section">
         <div class="container">
             <div class="section-header fade-in">
                 <span class="section-number">03</span>
-                <h2 class="section-headline">The Architect</h2>
+                <h2 class="section-headline">The New State-of-the-Art</h2>
             </div>
-            <div class="architect-grid">
-                <div class="architect-image fade-in">
-                    <div class="image-wrapper">
-                        <img src="images/headshot.png" alt="Aazar - Founder of Nehme AI Labs" class="headshot">
-                        <div class="image-overlay"></div>
+            <div class="sota-content fade-in">
+                <p class="large-text">Introducing Nehme-AI-FlashCheck, a new family of fact-verification models that redefine efficiency and accuracy.</p>
+                <p class="sota-subtext">By providing a simple "Yes" or "No" answer to any claim against a document, FlashCheck acts as a powerful verification layer, drastically reducing AI hallucinations and building more trustworthy systems.</p>
+                
+                <div class="sota-grid">
+                    <div class="sota-item">
+                        <div class="sota-model-name">Nehme-AI-FlashCheck-1B</div>
+                        <div class="sota-accuracy">81.90%</div>
+                        <div class="sota-description">Outperforms all known models, including IBM's Granite Guardian (76.5%) and Bespoke-Minicheck-7B (77.4%), while being 8x smaller.</div>
+                    </div>
+                    <div class="sota-item">
+                        <div class="sota-model-name">Nehme-AI-FlashCheck-270M</div>
+                        <div class="sota-accuracy">75.46%</div>
+                        <div class="sota-description">Surpasses models like MiniCheck-Flan-T5-L (75.0%) at a fraction of the size. Efficiency without compromise.</div>
                     </div>
                 </div>
-                <div class="architect-dossier fade-in">
-                    <ul class="dossier-list">
-                        <li class="dossier-item">
-                            <span class="dossier-bullet"></span>
-                            <span class="dossier-text">Architected systems for high-traffic platforms like Nykaa & Dun & Bradstreet.</span>
-                        </li>
-                        <li class="dossier-item">
-                            <span class="dossier-bullet"></span>
-                            <span class="dossier-text">Proven record of slashing on-premise AI operational costs by up to 70%.</span>
-                        </li>
-                        <li class="dossier-item">
-                            <span class="dossier-bullet"></span>
-                            <span class="dossier-text">Global Rank #1 in Python on HackerRank.</span>
-                        </li>
-                        <li class="dossier-item">
-                            <span class="dossier-bullet"></span>
-                            <span class="dossier-text">Core philosophy: a system's intelligence is defined by the elegance of its strange loop.</span>
-                        </li>
-                        <li class="dossier-item">
-                            <span class="dossier-bullet"></span>
-                            <span class="dossier-text">Saved YOU $50,000 in the first quarter.</span>
-                        </li>
-                    </ul>
-                </div>
+
+                <a href="flashcheck.html" class="cta-button">
+                    <span class="cta-text">Explore the Benchmark</span>
+                    <span class="cta-arrow">→</span>
+                </a>
             </div>
         </div>
     </section>
+
+    <!-- Section 4: Social Proof (Removed) -->
 
     <!-- Section 5: The Engagement -->
     <section id="engagement" class="content-section">

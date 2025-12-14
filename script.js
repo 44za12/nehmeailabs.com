@@ -7,8 +7,8 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         const targetId = this.getAttribute('href');
         const target = document.querySelector(targetId);
         if (target) {
-            const offset = 80;
-            const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+            const headerOffset = 100; // Adjusted for fixed header
+            const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerOffset;
             window.scrollTo({
                 top: targetPosition,
                 behavior: 'smooth'
