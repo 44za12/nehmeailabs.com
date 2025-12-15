@@ -380,17 +380,17 @@
 	<title>FlashCheck | Nehme AI Labs</title>
 	<meta
 		name="description"
-		content="FlashCheck is a deterministic fact-verification model: give it a Document and a Claim, it returns Yes or No."
+		content="Nehme AI Labs delivers fixed-fee architectural audits for on‑prem GenAI stacks—cutting compute cost and hallucination risk with deterministic verification (FlashCheck)."
 	/>
 	<meta property="og:title" content="FlashCheck | Nehme AI Labs" />
 	<meta
 		property="og:description"
-		content="Deterministic fact verification: Document + Claim → Yes/No. Built to kill hallucinations in production."
+		content="Nehme AI Labs delivers fixed-fee architectural audits for on‑prem GenAI stacks—cutting compute cost and hallucination risk with deterministic verification (FlashCheck)."
 	/>
 	<meta property="twitter:title" content="FlashCheck | Nehme AI Labs" />
 	<meta
 		property="twitter:description"
-		content="Deterministic fact verification: Document + Claim → Yes/No. Built to kill hallucinations in production."
+		content="Nehme AI Labs delivers fixed-fee architectural audits for on‑prem GenAI stacks—cutting compute cost and hallucination risk with deterministic verification (FlashCheck)."
 	/>
 	<link rel="stylesheet" href="/flashcheck.css" />
 </svelte:head>

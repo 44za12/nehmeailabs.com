@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { PageData } from './$types';
+	import { OG_IMAGE_PATH, SITE_NAME, SITE_URL } from '$lib/config/site';
 
 	let { data }: { data: PageData } = $props();
 
@@ -16,8 +17,41 @@
 	<meta
 		name="description"
 		content={data.metadata.excerpt ??
-			'Insights from Nehme AI Labs on on‑prem GenAI architecture, efficiency, reliability engineering, and AI systems.'}
+			'Nehme AI Labs delivers fixed-fee architectural audits for on‑prem GenAI stacks—cutting compute cost and hallucination risk with deterministic verification (FlashCheck).'}
 	/>
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content={data.metadata.title ? `${data.metadata.title} | ${SITE_NAME}` : `Post | ${SITE_NAME}`} />
+	<meta
+		property="og:description"
+		content={data.metadata.excerpt ??
+			'Nehme AI Labs delivers fixed-fee architectural audits for on‑prem GenAI stacks—cutting compute cost and hallucination risk with deterministic verification (FlashCheck).'}
+	/>
+	<meta property="og:image" content={`${SITE_URL}${OG_IMAGE_PATH}`} />
+	<meta name="twitter:title" content={data.metadata.title ? `${data.metadata.title} | ${SITE_NAME}` : `Post | ${SITE_NAME}`} />
+	<meta
+		name="twitter:description"
+		content={data.metadata.excerpt ??
+			'Nehme AI Labs delivers fixed-fee architectural audits for on‑prem GenAI stacks—cutting compute cost and hallucination risk with deterministic verification (FlashCheck).'}
+	/>
+	{#if data.metadata.date}
+		<meta property="article:published_time" content={data.metadata.date} />
+	{/if}
+
+	<script type="application/ld+json">
+		{JSON.stringify({
+			'@context': 'https://schema.org',
+			'@type': 'Article',
+			headline: data.metadata.title ?? data.slug,
+			description:
+				data.metadata.excerpt ??
+				'Nehme AI Labs delivers fixed-fee architectural audits for on‑prem GenAI stacks—cutting compute cost and hallucination risk with deterministic verification (FlashCheck).',
+			datePublished: data.metadata.date,
+			author: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
+			publisher: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
+			mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE_URL}/post/${data.slug}` },
+			image: [`${SITE_URL}${OG_IMAGE_PATH}`]
+		})}
+	</script>
 	<link rel="stylesheet" href="/blog.css" />
 </svelte:head>
 

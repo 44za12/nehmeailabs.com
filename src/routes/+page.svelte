@@ -57,20 +57,20 @@
 </script>
 
 <svelte:head>
-	<title>Nehme AI Labs</title>
+	<title>Nehme AI Labs — Ruthlessly efficient AI architecture.</title>
 	<meta
 		name="description"
-		content="Stop burning capital. Surgical architectural audits for on‑prem GenAI stacks—built for efficiency, reliability, and control."
+		content="Nehme AI Labs delivers fixed-fee architectural audits for on‑prem GenAI stacks—cutting compute cost and hallucination risk with deterministic verification (FlashCheck)."
 	/>
 	<meta property="og:title" content="Nehme AI Labs" />
 	<meta
 		property="og:description"
-		content="Stop burning capital. Surgical architectural audits for on‑prem GenAI stacks—built for efficiency, reliability, and control."
+		content="Nehme AI Labs delivers fixed-fee architectural audits for on‑prem GenAI stacks—cutting compute cost and hallucination risk with deterministic verification (FlashCheck)."
 	/>
 	<meta property="twitter:title" content="Nehme AI Labs" />
 	<meta
 		property="twitter:description"
-		content="Stop burning capital. Surgical architectural audits for on‑prem GenAI stacks—built for efficiency, reliability, and control."
+		content="Nehme AI Labs delivers fixed-fee architectural audits for on‑prem GenAI stacks—cutting compute cost and hallucination risk with deterministic verification (FlashCheck)."
 	/>
 </svelte:head>
 
