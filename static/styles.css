@@ -764,6 +764,17 @@ p {
         gap: 2rem;
     }
 
+    /* Home page model cards: stack on mobile to prevent overflow/hiding */
+    .sota-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        margin: 2.5rem 0;
+    }
+
+    .sota-item {
+        padding: 1.5rem;
+    }
+
     .solution-item {
         width: 100%;
         padding: 2rem 1.25rem;
