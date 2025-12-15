@@ -1,0 +1,68 @@
+[
+  {
+    "label": "Yes #1",
+    "expected": "yes",
+    "document": "[1] Most pillows are the same temperature as your room (usually 68 to 86 degrees cooler than your head), and so the side your head doesn't rest on, stays cooler.\nPillows are designed like this specifically to try and stay cool. They are designed with materials that don't transfer heat well at all, and so keep the constant temperature that the room has. Due to the hot air from your head building up on one side of the pillow, this heat is then kept held on that side and creates a surrounding and developing heat around your head.\n\n[2] According to scientists, your head radiates more heat than any other part of your body. Thus, it's no surprise that your pillow heats up quickly as it absorbs heat from your head when you lie down.\nMost pillows are made of materials that do not conduct heat very well. As a result, the side of the pillow against your head soaks up and retains heat from your head.\nThe other side of the pillow stays about the same temperature as the ambient temperature in your room, which is probably 20-30 degrees cooler than your head. That's why the other side of the pillow always feels cooler.\n\n[3] Physiologically, our bodies need to drop around 1 to 2 degrees in temperature to drift off to sleep. This is why having a warm bath or shower helps us sleep: not only does it help us unwind mentally, but the water draws heat from the skin, cooling us down. Getting in a regular routine of having a bath or shower before bed is a great way of improving our likelihood of falling asleep quickly when we hit the pillow. This is also why we like to sleep on the cool side of the pillow or dangle our feet outside of the covers. It’s simply temperature control.",
+    "claim": " We prefer cold pillows to warm pillows because our bodies need to drop around 1 to 2 degrees in temperature to drift off to sleep."
+  },
+  {
+    "label": "Yes #2",
+    "expected": "yes",
+    "document": "Newsom picks Black lesbian, Laphonza Butler, a Maryland resident, to fill Feinstein's CA senate seat\nOn October 1, 2023, California Governor Gavin Newsom appointed Laphonza Butler, the president of EMILY's List, to fill the seat of the late Senator Dianne Feinstein.\nFeinstein was the oldest member of the Senate, the longest-serving female senator from 1992 to 2023. She died September 29, 2023.\n\"Laphonza has spent her entire career fighting for women and girls and has been a fierce advocate for working people.She will make history -- becoming the first Black lesbian to openly serve in the U.S. Senate\", Newsom wrote in a post on (formerly Twitter)\nButler is a Democratic strategist who rose to prominence in the labor movement. She previously served as an advisor to Kamala Harris' presidential campaign and as the executive director of the Service Employees International Union (SEIU) California.\nPrior to joining EMILYs List, Butler served as Director of Public Policy and Campaigns in North America for Airbnb. She also was a partner at SCRB Strategies, a political consulting firm where she was a strategist for candidates running up and down the ballot.-Emilys List\nButler's appointment will take effect immediately. She will serve in the Senate until the next regularly scheduled election in November 2024.\nAccording to her bio \"Butler has been a member of the University of California Board of Regents and a member of the board of directors for the Children’s Defense Fund and BLACK PAC. Laphonza grew up in Magnolia, MS, and attended one of the country’s premier HBCUs, Jackson State University\".\nButler's appointment is notable because she does not currently live in California. She resides in Maryland, but she owns a home in California and will switch her voter registration per a NBC News report..",
+    "claim": "Butler, a Democratic strategist, will be the first Black lesbian to openly serve in the Senate."
+  },
+  {
+    "label": "Yes #3",
+    "expected": "yes",
+    "document": "Tish County standout Reese Moore signs with Freed-Hardeman\nReese Moore, a senior from Tishomingo County High School, signs with Freed-Hardeman University. Reese signed her National Letter of Intent on October 23rd, after committing back on June 25th.\nThough she is known for her success in basketball, Reese Moore is coming off a very successful volleyball season. The Lady Braves volleyball team finished 13-8 after a second-round playoff loss to the eventual state champions, the Newton County Lady Cougars. Moore is one of the few student-athletes in the state to score 1,000+ points in basketball as well as 1,000+ kills in volleyball. With the completion of this volleyball season, it appears basketball is the future for Reese Moore.\nThe 5’11” guard averaged 20 points and 8.2 rebounds per game for the Lady Braves last year and is looking forward to an even bigger season this year. Moore helped lead the Lady Braves to a 29-3 season last year, which ended in a loss in the 4A state quarterfinals to the eventual runner-up state champions, the Pontotoc Lady Warriors. Moore was also selected for the 2023 North All-Star Game by the Mississippi Association of Coaches. Moore is looking forward to a special year in her final season at Tishomingo County.\nThe Freed-Hardeman Lady Lions are coming off a 24-10 season in which Coach Joshua Epperson led them to a Mid-South Conference Tournament Championship. The Lady Lions lost in the second round of the NAIA Tournament to the eventual National Champions, the Clarke Lady Pride. There is no doubt that Reese Moore will fit in well with the winning mindset of Coach Epperson and the Lady Lions.\nReese Moore and the Lady Braves will be in action on October 28th at the TCHS Jamboree. The Lady Braves will officially begin their season on November 7th, on the road, at Alcorn Central.",
+    "claim": "She looks forward to an even better season this year and will join a winning program with the Lady Lions, who had a 24-10 season last year."
+  },
+  {
+    "label": "Yes #4",
+    "expected": "yes",
+    "document": "a year on technology, according to a recent report. The full effect of technology on the future of auditing is yet to be determined. But, among other things, technology is expected to facilitate audit fieldwork by automating time-consuming manual and rote tasks. For example, computer systems at accounting firms can now interface with an audit client’s systems to transfer and compile data automatically. Some firms also are using drones to observe physical inventories. Previously, these processes were done manually, often by lower-level accountants.New technology makes it possible for auditors to analyze large amounts of a company’s financial data and test 100% of a company’s transactions instead of testing only a sample. Sophisticated tools enable auditors to perform advanced analytics to gain deeper insight into the company’s operations. Data analytics may also allow auditors to better track and analyze their clients’ trends and risks against industry or geographic data sets, leading",
+    "claim": "Sophisticated tools, like data analytics, enable auditors to gain deeper insights into a company's operations while better tracking and analyzing their clients' trends and risks against industry or geographic data sets ."
+  },
+  {
+    "label": "Yes #5",
+    "expected": "yes",
+    "document": "of progress could be indicated by a square.\n\nFor a complex project, you may decide to produce a separate Gantt chart for each of the key stages. If you do this shortly before each key stage begins, you will be able to take any last-minute eventualities into account. These charts provide a useful tool for monitoring and control as the project progresses.\n\nGantt charts are relatively easy to draw by hand, but this doesn’t offer the same level of flexibility during monitoring that you would get from a software package. Various programs are available to assist project managers in scheduling and control. Once the data have been entered, a program helps you to work on “what if” scenarios, showing what might happen if a key stage is delayed or speeded up. This is more difficult if you are working manually.\n\nCreating the Network Diagram\n\nMany project managers use network diagrams when scheduling a project. The network diagram is a way to visualize the interrelationships of project activities.",
+    "claim": "Project schedules can be represented using different formats, such as Gantt charts, network diagrams, or task lists ."
+  },
+  {
+    "label": "No #1",
+    "expected": "no",
+    "document": "Who can take lactulose\n\nMost adults and young people aged 14 years and over can take lactulose.\n\nBabies and children aged under 14 can take lactulose if their doctor recommends it. Do not give lactulose to a child under the age of 14 unless their doctor has said it's OK.\n\nWho may not be able to take lactulose\n\nLactulose is not suitable for some people. To make sure it's safe for you, tell your doctor or pharmacist if you:",
+    "claim": "Yes, babies under 3 years old can take lactulose as a treatment for constipation."
+  },
+  {
+    "label": "No #2",
+    "expected": "no",
+    "document": "Baseball at the 2008 Summer Olympics – Qualification, 2007 Asian Championship. The IBAF and IOC recognize Taiwan as Chinese Taipei. Internationally, the team plays as the Chinese Taipei National baseball team, however are referred to, in the country, as the Taiwan National baseball team and use the flag .",
+    "claim": "Flags are not used in baseball."
+  },
+  {
+    "label": "No #3",
+    "expected": "no",
+    "document": "Anthony Perkins, Career, Later career: Perkins reprised the role of Norman Bates in Psycho's three sequels. The first, Psycho II (1983), was a box-office success twenty-three years after the original film.",
+    "claim": "Christopher Connelly plays the character of Norman Bates in Psycho II."
+  },
+  {
+    "label": "No #4",
+    "expected": "no",
+    "document": "[40] Morton's faction within the Democratic Party also gained strength due to the organizational skill of historian George Bancroft , and successful moves spearheaded by Morton to change the methods by which lower-level party leaders were chosen. [41] David Henshaw resigned from the politically important post as the collector of the Port of Boston in 1837, starting a struggle within the party for this valuable patronage plum. Morton was one of several potential recipients, but eventually dropped out, suggesting it go instead to George Bancroft. [42] [43] Bancroft, from the western part of the state, attracted support from the Working Men into the Democratic fold. [44] Governor [ edit ]",
+    "claim": "Marcus Morton left the Federalist Party.,"
+  },
+  {
+    "label": "No #5",
+    "expected": "no",
+    "document": "Polzeath: Polzeath has a sandy beach and is popular with holiday-makers and surfers. The beach is 1,500 feet (460 m) wide and extends 1,200 feet (370 m) from the seafront at low water; however, most of the sand is submerged at high water. At exceptionally high spring tides the sea floods the car park at the top of the beach.",
+    "claim": "The average sandy beach is 100 feet wide."
+  },
+  {
+    "label": "No #6",
+    "expected": "no",
+    "document": "In the case of water, hydrogen bonds form between neighboring hydrogen and oxygen atoms of adjacent water molecules. The attraction between individual water molecules creates a bond known as a hydrogen bond. Sources/Usage Public Domain.",
+    "claim": "The interaction between substance's ions and water molecules occurs through ion-dipole and hydrogen bonding."
+  }
+]
