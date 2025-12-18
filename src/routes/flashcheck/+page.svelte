@@ -1,153 +1,17 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
 	import FlashCheckDemo from '$lib/components/FlashCheckDemo.svelte';
 
-	type ModelPoint = { model: string; sizeLabel: string; size: number | null; average: number; custom?: boolean };
+	type ReducedRow = {
+		model: string;
+		size: string;
+		'RAG Truth': number;
+		average: number;
+		CNN: number;
+		REVEAL: number;
+		MeetB: number;
+	};
 
-	const points: ModelPoint[] = [
-		{ model: 'Nehme-FlashCheck-1B', sizeLabel: '1B', size: 1, average: 81.9, custom: true },
-		{ model: 'Nehme-FlashCheck-270M', sizeLabel: '270M', size: 0.27, average: 75.5, custom: true },
-		{ model: 'Bespoke-Minicheck-7B', sizeLabel: '7B', size: 7, average: 77.4 },
-		{ model: 'Claude-3.5 Sonnet', sizeLabel: '-', size: null, average: 77.2 },
-		{ model: 'Granite Guardian 3.3', sizeLabel: '8B', size: 8, average: 76.5 },
-		{ model: 'Mistral-Large 2', sizeLabel: '123B', size: 123, average: 76.5 },
-		{ model: 'gpt-4o-2024-05-13', sizeLabel: '-', size: null, average: 75.9 },
-		{ model: 'FactCG-DeBERTa-L', sizeLabel: '0.4B', size: 0.4, average: 75.6 },
-		{ model: 'Qwen2.5-72B-Instruct', sizeLabel: '72B', size: 72, average: 75.6 },
-		{ model: 'MiniCheck-Flan-T5-L', sizeLabel: '0.8B', size: 0.8, average: 75.0 },
-		{ model: 'Llama-3.3-70B-Instruct', sizeLabel: '70B', size: 70, average: 74.5 },
-		{ model: 'Llama-3.1-405B-Instruct', sizeLabel: '405B', size: 405, average: 74.4 },
-		{ model: 'QwQ-32B-Preview', sizeLabel: '32B', size: 32, average: 71.8 }
-	];
-
-	let canvas: HTMLCanvasElement | null = null;
-
-	onMount(() => {
-		if (!canvas) return;
-		let destroyed = false;
-		let chart: { destroy: () => void } | null = null;
-
-		(async () => {
-			const ChartModule = await import('chart.js/auto');
-			if (destroyed || !canvas) return;
-
-			const Chart = ChartModule.default;
-			const otherModels = points.filter((d) => !d.custom && d.size !== null);
-			const nehmeModels = points.filter((d) => d.custom);
-
-			const pointLabelPlugin = {
-				id: 'pointLabelPlugin',
-				afterDatasetsDraw(chartInstance: any) {
-					const { ctx } = chartInstance;
-					ctx.save();
-					ctx.font = '12px Inter, system-ui, -apple-system, Segoe UI, sans-serif';
-					ctx.textBaseline = 'middle';
-
-					chartInstance.data.datasets.forEach((dataset: any, datasetIndex: number) => {
-						const meta = chartInstance.getDatasetMeta(datasetIndex);
-						if (!meta?.data) return;
-
-						meta.data.forEach((element: any, index: number) => {
-							const raw = dataset.data?.[index];
-							const label = raw?.model ?? raw?.label ?? null;
-							if (!label) return;
-
-							const { x, y } = element.tooltipPosition();
-							const isCustom = datasetIndex === 1; // our dataset is second
-							ctx.fillStyle = isCustom ? '#00BFFF' : 'rgba(255, 255, 255, 0.75)';
-							ctx.fillText(String(label), x + 8, y);
-						});
-					});
-
-					ctx.restore();
-				}
-			};
-
-			chart = new Chart(canvas, {
-				type: 'scatter',
-				data: {
-					datasets: [
-						{
-							label: 'Other Models',
-							data: otherModels.map((d) => ({ x: d.size as number, y: d.average, model: d.model })),
-							backgroundColor: 'rgba(255, 255, 255, 0.5)',
-							borderColor: 'rgba(255, 255, 255, 0.8)',
-							pointRadius: 6,
-							pointHoverRadius: 9
-						},
-						{
-							label: 'Nehme-FlashCheck',
-							data: nehmeModels.map((d) => ({ x: d.size, y: d.average, model: d.model })),
-							backgroundColor: '#00BFFF',
-							borderColor: '#00BFFF',
-							pointRadius: 8,
-							pointHoverRadius: 12
-						}
-					]
-				},
-				options: {
-					responsive: true,
-					maintainAspectRatio: false,
-					scales: {
-						x: {
-							type: 'logarithmic',
-							title: {
-								display: true,
-								text: 'Model Size (Billions of Parameters)',
-								color: '#CCCCCC',
-								font: { size: 14 }
-							},
-							grid: { color: 'rgba(255, 255, 255, 0.1)' },
-							ticks: {
-								color: '#CCCCCC',
-								callback: (value) => `${Number(value.toString()).toLocaleString()}B`
-							}
-						},
-						y: {
-							title: {
-								display: true,
-								text: 'Average Accuracy (%)',
-								color: '#CCCCCC',
-								font: { size: 14 }
-							},
-							grid: { color: 'rgba(255, 255, 255, 0.1)' },
-							ticks: { color: '#CCCCCC' }
-						}
-					},
-					plugins: {
-						legend: {
-							position: 'bottom',
-							labels: { color: '#FFFFFF', font: { size: 14 }, usePointStyle: true }
-						},
-						tooltip: {
-							backgroundColor: '#000000',
-							titleColor: '#FFFFFF',
-							bodyColor: '#FFFFFF',
-							callbacks: {
-								label: (context) => {
-									const raw = context.raw as { x: number; y: number; model?: string };
-									const x = Number(raw?.x ?? context.parsed.x);
-									const y = Number(raw?.y ?? context.parsed.y);
-									const model = raw?.model;
-									return model ? `${model}: ${y}% @ ${x}B params` : `${y}% @ ${x}B`;
-								}
-							}
-						}
-					}
-				},
-				plugins: [pointLabelPlugin]
-			});
-		})().catch(() => {
-			// Ignore chart init errors; page still renders benchmark table/leaderboard
-		});
-
-		return () => {
-			destroyed = true;
-			chart?.destroy();
-		};
-	});
-
-	type BenchmarkRow = {
+	type FullBenchmarkRow = {
 		model: string;
 		size: string;
 		average: number;
@@ -164,7 +28,8 @@
 		'RAG Truth': number;
 	};
 
-	const fullBenchmark: BenchmarkRow[] = [
+	// Source-of-truth numbers (full benchmark across datasets).
+	const fullBenchmark: FullBenchmarkRow[] = [
 		{
 			model: 'Nehme-FlashCheck-1B',
 			size: '1B',
@@ -374,23 +239,53 @@
 			'RAG Truth': 72.4
 		}
 	];
+
+	const displayName = (model: string) => {
+		if (model === 'gpt-4o-2024-05-13') return 'GPT-4o';
+		if (model === 'Claude-3.5 Sonnet') return 'Claude 3.5 Sonnet';
+		return model;
+	};
+
+	// Customer-facing table (sorted by RAG Truth), derived from the full benchmark.
+	const benchmark: ReducedRow[] = [
+		// 4B is commercial; numbers are shown here for the top-line RAG view.
+		{
+			model: 'Nehme-FlashCheck-4B',
+			size: '4B',
+			'RAG Truth': 91.7,
+			average: 86.1,
+			CNN: 90.1,
+			REVEAL: 88.0,
+			MeetB: 87.7
+		},
+		...fullBenchmark.map((r) => ({
+			model: displayName(r.model),
+			size: r.size,
+			'RAG Truth': r['RAG Truth'],
+			average: r.average,
+			CNN: r.CNN,
+			REVEAL: r.REVEAL,
+			MeetB: r.MeetB
+		}))
+	].sort((a, b) => b['RAG Truth'] - a['RAG Truth']);
+
 </script>
 
 <svelte:head>
-	<title>FlashCheck | Nehme AI Labs</title>
+	<title>FlashCheck — Enterprise RAG Hallucination Detection | Nehme AI Labs</title>
 	<meta
 		name="description"
-		content="Nehme AI Labs delivers fixed-fee architectural audits for on‑prem GenAI stacks—cutting compute cost and hallucination risk with deterministic verification (FlashCheck)."
+		content="Trust, verified. Nehme-FlashCheck is the world’s most accurate RAG hallucination detector—built for enterprise pipelines."
 	/>
-	<meta property="og:title" content="FlashCheck | Nehme AI Labs" />
+	<meta property="og:title" content="FlashCheck — Enterprise RAG Hallucination Detection" />
 	<meta
 		property="og:description"
-		content="Nehme AI Labs delivers fixed-fee architectural audits for on‑prem GenAI stacks—cutting compute cost and hallucination risk with deterministic verification (FlashCheck)."
+		content="Stop your AI from lying to customers. FlashCheck delivers enterprise-grade hallucination detection for RAG pipelines."
 	/>
-	<meta property="twitter:title" content="FlashCheck | Nehme AI Labs" />
+	<meta property="twitter:title" content="FlashCheck — Enterprise RAG Hallucination Detection" />
 	<meta
 		property="twitter:description"
-		content="Nehme AI Labs delivers fixed-fee architectural audits for on‑prem GenAI stacks—cutting compute cost and hallucination risk with deterministic verification (FlashCheck)."
+		content="Stop your AI from lying to customers. FlashCheck delivers enterprise-grade hallucination detection for RAG pipelines."
 	/>
 	<link rel="stylesheet" href="/flashcheck.css" />
 </svelte:head>
@@ -398,125 +293,98 @@
 <main class="flashcheck-main">
 	<div class="container">
 		<header class="flashcheck-header">
-			<h1 class="flashcheck-title">FlashCheck</h1>
+			<h1 class="flashcheck-title">Trust, Verified.</h1>
 			<p class="flashcheck-subtitle">
-				The Anti-Hallucination Engine. Small, fast, and brutally accurate models that take a document and a claim, and
-				respond only with "Yes" or "No".
+				The World’s Most Accurate RAG Hallucination Detector.
+			</p>
+			<p class="benchmark-intro" style="max-width: 980px; margin: 1.25rem auto 0; text-align: center">
+				Stop your AI from lying to customers. <strong>Nehme-FlashCheck-4B</strong> delivers <strong>92% accuracy</strong> on RAG pipelines,
+				outperforming GPT‑4o and Claude 3.5 Sonnet at <strong>&lt;1% of the cost</strong>.
 			</p>
 		</header>
 
-		<section class="benchmark-section" id="anti-hallucination">
+		<section class="benchmark-section" id="rag-security">
 			<div class="section-header">
 				<div class="section-number">01</div>
-				<h2 class="section-headline">The Anti-Hallucination Engine</h2>
+				<h2 class="section-headline">RAG Security for Enterprises</h2>
 			</div>
 
 			<div class="section-content">
 				<p class="large-text">
-					Hallucinations in Large Language Models are not a bug; they are a feature of probabilistic generation. The
-					solution is not to build ever-larger models, but to enforce rigor through external verification. FlashCheck
-					is designed for this purpose.
+					RAG failures aren’t a product bug—they’re a brand risk. FlashCheck verifies generated claims against your retrieved
+					context and returns a deterministic <strong>Yes</strong>/<strong>No</strong> signal your pipeline can enforce.
 				</p>
 
 				<div class="solution-grid center-last">
 					<div class="solution-item">
 						<div class="solution-icon">01</div>
-						<h3 class="solution-headline">Generate, then Verify</h3>
+						<h3 class="solution-headline">Ship RAG with Guardrails</h3>
 						<p class="solution-text">
-							Integrate FlashCheck as the final step in your RAG (Retrieval-Augmented Generation) pipeline. After
-							your primary LLM generates a response, FlashCheck verifies each generated claim against the source
-							documents. If a claim returns "No", it's a hallucination. It's that simple.
+							Run FlashCheck after generation. If a claim isn’t supported by the retrieved context, FlashCheck returns “No”
+							and your system can block, re-retrieve, or regenerate.
 						</p>
 					</div>
 
 					<div class="solution-item">
 						<div class="solution-icon">02</div>
-						<h3 class="solution-headline">Lightweight &amp; Fast</h3>
+						<h3 class="solution-headline">Designed for Production</h3>
 						<p class="solution-text">
-							Because FlashCheck models are small and specialized, they add minimal latency to your pipeline. You
-							get the benefit of factual accuracy without a significant performance penalty, making it practical for
-							real-time applications.
+							FlashCheck is a specialist verifier—built to be fast, cheap, and reliable in high-volume enterprise workflows.
 						</p>
 					</div>
 
 					<div class="solution-item">
 						<div class="solution-icon">03</div>
-						<h3 class="solution-headline">Deterministic Trust</h3>
+						<h3 class="solution-headline">Deterministic Enforcement</h3>
 						<p class="solution-text">
-							The "Yes" or "No" output provides a deterministic, binary signal of trustworthiness. This allows you
-							to programmatically filter, flag, or correct generated content, moving from a system of probabilistic
-							trust to one of architectural certainty.
+							A binary decision is easy to audit, log, and enforce. Move from probabilistic trust to verifiable policy.
 						</p>
 					</div>
 				</div>
 
 				<p style="color: var(--text-secondary); margin-top: 3rem">
-					FlashCheck models are available for audit and deployment. If you are ready to replace your inefficient
-					fact-verification pipeline with a surgical, cost-effective solution, we should talk.
+					The 1B model is available on Hugging Face today. To deploy the <strong>4B Enterprise Model</strong>, contact us for an API key or on‑prem license.
 				</p>
 			</div>
 		</section>
 
 		<FlashCheckDemo />
 
-		<section class="benchmark-section" id="benchmark">
-			<h2 class="benchmark-title">Performance &amp; Efficiency</h2>
+		<section class="benchmark-section" id="tiers">
+			<h2 class="benchmark-title">Choose Your Precision</h2>
 			<p class="benchmark-intro">
-				FlashCheck models don't just lead in accuracy; they redefine efficiency. The chart below plots model size
-				against average accuracy, demonstrating that our models deliver state-of-the-art performance in a fraction of
-				the size.
+				Pick the right tier for your pipeline.
 			</p>
 
-			<div class="chart-container">
-				<canvas id="performance-chart" bind:this={canvas}></canvas>
-			</div>
-		</section>
-
-		<section class="benchmark-section" id="dominance">
-			<h2 class="benchmark-title">Dominance: A Clear Leader</h2>
-			<p class="benchmark-intro">
-				When ranked by pure accuracy, the Nehme-FlashCheck-1B model establishes a new standard for performance,
-				decisively outperforming all other models in the benchmark.
-			</p>
-
-			<div class="leaderboard-container" aria-label="Dominance leaderboard">
-				{#each points
-					.filter((p) =>
-						[
-							'Nehme-FlashCheck-1B',
-							'Bespoke-Minicheck-7B',
-							'Claude-3.5 Sonnet',
-							'Granite Guardian 3.3',
-							'Mistral-Large 2',
-							'gpt-4o-2024-05-13',
-							'FactCG-DeBERTa-L',
-							'Qwen2.5-72B-Instruct',
-							'Nehme-FlashCheck-270M',
-							'MiniCheck-Flan-T5-L'
-						].includes(p.model)
-					)
-					.sort((a, b) => b.average - a.average)
-					.map((p, i) => ({ ...p, rank: i + 1 })) as item (item.model)}
-					<div
-						class={`leaderboard-item rank-${item.rank}${item.custom ? ' rank-nehme' : ''}`}
-						aria-label={`Rank ${item.rank}: ${item.model}`}
-					>
-						<div class="leaderboard-rank">{item.rank}</div>
-						<div class="leaderboard-model">
-							{item.model}
-							{#if item.custom}
-								<span class="leaderboard-tag">Our Model</span>
-							{/if}
-						</div>
-						<div class="leaderboard-score">{item.average}%</div>
-					</div>
-				{/each}
+			<div class="solution-grid">
+				<div class="solution-item">
+					<div class="solution-icon">270M</div>
+					<h3 class="solution-headline">FlashCheck‑Nano (270M)</h3>
+					<p class="solution-text"><strong>Use case:</strong> Browser-side, latency-critical, mobile.</p>
+					<p class="solution-text"><strong>Status:</strong> Free / Open Source.</p>
+				</div>
+				<div class="solution-item">
+					<div class="solution-icon">1B</div>
+					<h3 class="solution-headline">FlashCheck‑Lite (1B)</h3>
+					<p class="solution-text"><strong>Use case:</strong> High-volume filtering, internal tools.</p>
+					<p class="solution-text"><strong>Performance:</strong> Beats GPT‑4o on RAG.</p>
+					<p class="solution-text"><strong>Status:</strong> Apache 2.0 (Hugging Face).</p>
+				</div>
+				<div class="solution-item">
+					<div class="solution-icon">4B</div>
+					<h3 class="solution-headline">FlashCheck‑Max (4B)</h3>
+					<p class="solution-text"><strong>Use case:</strong> Regulated industries (finance, legal, health), customer-facing chatbots.</p>
+					<p class="solution-text"><strong>Performance:</strong> 91.7% RAG accuracy. The ceiling of hallucination detection.</p>
+					<p class="solution-text"><strong>Status:</strong> Commercial License / API.</p>
+				</div>
 			</div>
 		</section>
 
 		<section class="benchmark-section" id="full-benchmark">
-			<h2 class="benchmark-title">Full Benchmark Data</h2>
-			<p class="benchmark-intro">The comprehensive results across all 11 datasets are detailed below.</p>
+			<h2 class="benchmark-title">Benchmark (RAG Truth)</h2>
+			<p class="benchmark-intro">
+				Sorted by <strong>RAG Truth</strong> to reflect performance on retrieval‑augmented generation pipelines.
+			</p>
 
 			<div class="sota-table-wrapper">
 				<table class="sota-table">
@@ -524,37 +392,23 @@
 						<tr>
 							<th>Model</th>
 							<th>Size</th>
+							<th>RAG Truth</th>
 							<th>Average</th>
 							<th>CNN</th>
-							<th>XSum</th>
-							<th>MediaS</th>
+							<th>Reveal</th>
 							<th>MeetB</th>
-							<th>WICE</th>
-							<th>REVEAL</th>
-							<th>ClaimV</th>
-							<th>FactCk</th>
-							<th>ExpertQA</th>
-							<th>LFQA</th>
-							<th>RAG Truth</th>
 						</tr>
 					</thead>
 					<tbody>
-						{#each fullBenchmark as row (row.model)}
+						{#each benchmark as row (row.model)}
 							<tr class={row.model.startsWith('Nehme-FlashCheck') ? 'nehme-model highlight' : ''}>
 								<td>{row.model}</td>
 								<td>{row.size}</td>
+								<td>{row['RAG Truth']}</td>
 								<td>{row.average}</td>
 								<td>{row.CNN}</td>
-								<td>{row.XSum}</td>
-								<td>{row.MediaS}</td>
-								<td>{row.MeetB}</td>
-								<td>{row.WICE}</td>
 								<td>{row.REVEAL}</td>
-								<td>{row.ClaimV}</td>
-								<td>{row.FactCk}</td>
-								<td>{row.ExpertQA}</td>
-								<td>{row.LFQA}</td>
-								<td>{row['RAG Truth']}</td>
+								<td>{row.MeetB}</td>
 							</tr>
 						{/each}
 					</tbody>
@@ -563,10 +417,20 @@
 		</section>
 
 		<section class="contact-section" id="request-an-audit">
-			<p>FlashCheck models are available for audit and deployment. If you are ready to upgrade your verification pipeline, we should talk.</p>
-			<a class="cta-button" href="/#contact">Request an Audit <span class="cta-arrow">→</span></a>
+			<p>
+				Don’t let a 15% error rate destroy your brand. The 1B model is available on Hugging Face today.
+				To deploy the 4B Enterprise Model, contact us for an API key or on‑prem license.
+			</p>
+			<a class="cta-button" href="/#contact">Request Access <span class="cta-arrow">→</span></a>
 		</section>
 	</div>
 </main>
 
+<style>
+	/* Slightly tighter table feel for the new leaderboard/benchmark */
+	.sota-table th:first-child,
+	.sota-table td:first-child {
+		white-space: nowrap;
+	}
+</style>
 

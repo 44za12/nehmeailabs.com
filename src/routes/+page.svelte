@@ -57,20 +57,20 @@
 </script>
 
 <svelte:head>
-	<title>Nehme AI Labs — Ruthlessly efficient AI architecture.</title>
+	<title>Nehme AI Labs — Ruthlessly Efficient AI Architecture</title>
 	<meta
 		name="description"
-		content="Nehme AI Labs delivers fixed-fee architectural audits for on‑prem GenAI stacks—cutting compute cost and hallucination risk with deterministic verification (FlashCheck)."
+		content="Nehme AI Labs delivers fixed-fee architectural audits for on‑prem GenAI stacks—cutting compute cost and failure risk with surgical interventions. FlashCheck is our RAG hallucination detector."
 	/>
 	<meta property="og:title" content="Nehme AI Labs" />
 	<meta
 		property="og:description"
-		content="Nehme AI Labs delivers fixed-fee architectural audits for on‑prem GenAI stacks—cutting compute cost and hallucination risk with deterministic verification (FlashCheck)."
+		content="Fixed-fee architectural audits for on‑prem GenAI stacks—cut compute cost and reduce failure risk. FlashCheck is our RAG hallucination detector."
 	/>
 	<meta property="twitter:title" content="Nehme AI Labs" />
 	<meta
 		property="twitter:description"
-		content="Nehme AI Labs delivers fixed-fee architectural audits for on‑prem GenAI stacks—cutting compute cost and hallucination risk with deterministic verification (FlashCheck)."
+		content="Fixed-fee architectural audits for on‑prem GenAI stacks—cut compute cost and reduce failure risk. FlashCheck is our RAG hallucination detector."
 	/>
 </svelte:head>
 
@@ -90,12 +90,15 @@
 		</div>
 
 		<p class="hero-subheadline">
-			Your On-Premise GenAI stack is a bonfire of inefficiency. We are the fire department.
+			Your on‑prem GenAI stack is a bonfire of inefficiency. We are the fire department.
 		</p>
 
-		<a class="cta-button" href="#contact">
-			Request an Audit <span class="cta-arrow">→</span>
-		</a>
+		<div style="display:flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; margin-top: 1.5rem">
+			<a class="cta-button" href="#contact">Request an Audit <span class="cta-arrow">→</span></a>
+			<a class="cta-button" href="/flashcheck" style="border-color: rgba(255,255,255,0.18)">
+				Explore FlashCheck <span class="cta-arrow">→</span>
+			</a>
+		</div>
 
 		<div class="scroll-indicator" aria-hidden="true">
 			<div class="scroll-line"></div>
@@ -167,46 +170,69 @@
 	<div class="container">
 		<div class="section-header">
 			<div class="section-number">03</div>
-			<h2 class="section-headline">The New State-of-the-Art</h2>
+			<h2 class="section-headline">Choose Your Precision</h2>
 		</div>
 
 		<div class="sota-content">
 			<p class="sota-subtext fade-in" use:inview data-delay="0">
-				Introducing Nehme-FlashCheck, a new family of fact-verification models that redefine efficiency and
-				accuracy.
+				The 1B is the gateway drug. The 4B is the product.
 			</p>
 
-			<p class="fade-in" use:inview data-delay="150" style="max-width: 900px; margin: 0 auto">
-				By providing a simple "Yes" or "No" answer to any claim against a document, FlashCheck acts as a powerful
-				verification layer, drastically reducing AI hallucinations and building more trustworthy systems.
-			</p>
-
-			<div class="sota-grid">
-				<div class="sota-item fade-in" use:inview data-delay="0">
-					<div class="sota-model-name">FlashCheck‑1B</div>
-					<div class="sota-accuracy">81.9%</div>
-					<p class="sota-description">
-						Outperforms all known models, including IBM's Granite Guardian (76.5%) and Bespoke-Minicheck-7B (77.4%),
-						while being 8x smaller.
-					</p>
+			<div class="home-tier-grid" style="margin-top: 2rem">
+				<div class="solution-item fade-in" use:inview data-delay="0">
+					<div class="solution-icon">270M</div>
+					<h3 class="solution-headline">FlashCheck‑Nano (270M)</h3>
+					<p class="solution-text"><strong>Use case:</strong> Browser-side, latency-critical, mobile.</p>
+					<p class="solution-text"><strong>Status:</strong> Free / Open Source.</p>
 				</div>
-
-				<div class="sota-item fade-in" use:inview data-delay="150">
-					<div class="sota-model-name">FlashCheck‑270M</div>
-					<div class="sota-accuracy">75.46%</div>
-					<p class="sota-description">
-						Surpasses models like MiniCheck-Flan-T5-L (75.0%) at a fraction of the size. Efficiency without
-						compromise.
-					</p>
+				<div class="solution-item fade-in" use:inview data-delay="150">
+					<div class="solution-icon">1B</div>
+					<h3 class="solution-headline">FlashCheck‑Lite (1B)</h3>
+					<p class="solution-text"><strong>Use case:</strong> High-volume filtering, internal tools.</p>
+					<p class="solution-text"><strong>Performance:</strong> Beats GPT‑4o on RAG.</p>
+					<p class="solution-text"><strong>Status:</strong> Apache 2.0 (Hugging Face).</p>
+				</div>
+				<div class="solution-item fade-in" use:inview data-delay="300">
+					<div class="solution-icon">4B</div>
+					<h3 class="solution-headline">FlashCheck‑Max (4B)</h3>
+					<p class="solution-text"><strong>Use case:</strong> Regulated industries (finance, legal, health), customer-facing chatbots.</p>
+					<p class="solution-text"><strong>Performance:</strong> 91.7% RAG accuracy. The ceiling of hallucination detection.</p>
+					<p class="solution-text"><strong>Status:</strong> Commercial License / API.</p>
 				</div>
 			</div>
 
-			<a class="cta-button fade-in" use:inview data-delay="250" href="/flashcheck">
-				Explore the Benchmark <span class="cta-arrow">→</span>
+			<a class="cta-button fade-in" use:inview data-delay="450" href="/flashcheck">
+				See the Benchmark <span class="cta-arrow">→</span>
 			</a>
 		</div>
 	</div>
 </section>
+
+<style>
+	/* Home page: 2-up grid + centered 3rd card */
+	.home-tier-grid {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 1.5rem;
+		align-items: stretch;
+		margin-bottom: 2rem; /* breathing room before CTA/next section */
+	}
+
+	@media (max-width: 900px) {
+		.home-tier-grid {
+			grid-template-columns: 1fr;
+			margin-bottom: 1.5rem;
+		}
+	}
+
+	@media (min-width: 901px) {
+		.home-tier-grid > :nth-child(3) {
+			grid-column: 1 / -1;
+			max-width: 720px;
+			justify-self: center;
+		}
+	}
+</style>
 
 <section class="content-section" id="engagement">
 	<div class="container">
@@ -249,8 +275,8 @@
 
 		<div class="contact-content">
 			<p class="contact-instruction fade-in" use:inview>
-				This is not a sales call. This is a 20-minute diagnostic session to determine if we are a fit. If I cannot
-				identify a clear path to save you at least double my audit fee in the first quarter, we will end the call.
+				This is not a sales call. This is a 20-minute diagnostic session to determine if we are a fit. If we cannot
+				identify a clear path to save you at least double our fee in the first quarter, we will end the call.
 			</p>
 
 			<div class="mailto-container fade-in" use:inview data-delay="200">

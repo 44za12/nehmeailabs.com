@@ -1,7 +1,7 @@
 ---
-title: 'Introducing FlashCheck: The Anti-Hallucination Engine'
+title: 'Introducing FlashCheck: Enterprise RAG Hallucination Detection'
 date: '2025-12-14'
-excerpt: 'LLMs hallucinate. FlashCheck is a purpose-built verification engine that returns a deterministic “Yes/No” answer to any claim against a document—enabling provably accurate AI systems.'
+excerpt: 'Trust, verified. FlashCheck is a purpose-built RAG hallucination detector that returns a deterministic “Yes/No” answer to verify claims against retrieved context.'
 ---
 
 ## The Trust Deficit in AI
@@ -22,15 +22,19 @@ This binary output is the foundation of a new, more reliable AI paradigm: **Gene
 
 By integrating FlashCheck as a verification layer in your system, you can instantly validate the outputs of your primary LLM. If a generated claim is not supported by the source material, FlashCheck returns "No". It's a simple, powerful mechanism to filter hallucinations before they ever reach your users.
 
-## Redefining the State-of-the-Art
+## The Product Line: Free vs. Enterprise
 
-We have benchmarked FlashCheck against the industry's leading models, and the results are decisive.
+FlashCheck is built as a tiered product:
 
-Our flagship model, **Nehme-FlashCheck-1B**, achieves a global accuracy of **81.9%**, significantly outperforming every other model on the market, including IBM's 8B Granite Guardian (76.5%) and the 7B Bespoke-Minicheck (77.4%). It achieves this superior performance while being **8 times smaller** than these competing models.
+- **FlashCheck‑Nano (270M)**: browser-side, latency-critical verification. Free and open source.
+- **FlashCheck‑Lite (1B)**: high-volume filtering and internal tools. Open source leader.
+- **FlashCheck‑Max (4B)**: the enterprise product—built for regulated industries and customer-facing RAG.
 
-Even our lightweight model, **Nehme-FlashCheck-270M**, is highly competitive, surpassing established models like the MiniCheck-Flan-T5-L.
+## The New Standard for Enterprise RAG
 
-This isn't just an incremental improvement. It's a step-change in what's possible with efficient, specialized AI architecture.
+On **RAG Truth**—the industry standard for Retrieval Augmented Generation—**FlashCheck‑4B** delivers **91.7%** RAG accuracy. That performance is what lets enterprises enforce trust in production pipelines, not just win trivia benchmarks.
+
+The open-source tier remains strong: **FlashCheck‑1B** achieves **84.6%** on RAG Truth with a **81.9%** global average, and **FlashCheck‑270M** is built for instant, on-device verification.
 
 ## From Probabilistic to Deterministic
 

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { PageData } from './$types';
-	import { OG_IMAGE_PATH, SITE_NAME, SITE_URL } from '$lib/config/site';
+	import { OG_IMAGE_PATH, SITE_DESCRIPTION, SITE_NAME, SITE_URL } from '$lib/config/site';
 
 	let { data }: { data: PageData } = $props();
 
@@ -16,22 +16,19 @@
 	<title>{data.metadata.title ? `${data.metadata.title} | Nehme AI Labs` : 'Post | Nehme AI Labs'}</title>
 	<meta
 		name="description"
-		content={data.metadata.excerpt ??
-			'Nehme AI Labs delivers fixed-fee architectural audits for on‑prem GenAI stacks—cutting compute cost and hallucination risk with deterministic verification (FlashCheck).'}
+		content={data.metadata.excerpt ?? SITE_DESCRIPTION}
 	/>
 	<meta property="og:type" content="article" />
 	<meta property="og:title" content={data.metadata.title ? `${data.metadata.title} | ${SITE_NAME}` : `Post | ${SITE_NAME}`} />
 	<meta
 		property="og:description"
-		content={data.metadata.excerpt ??
-			'Nehme AI Labs delivers fixed-fee architectural audits for on‑prem GenAI stacks—cutting compute cost and hallucination risk with deterministic verification (FlashCheck).'}
+		content={data.metadata.excerpt ?? SITE_DESCRIPTION}
 	/>
 	<meta property="og:image" content={`${SITE_URL}${OG_IMAGE_PATH}`} />
 	<meta name="twitter:title" content={data.metadata.title ? `${data.metadata.title} | ${SITE_NAME}` : `Post | ${SITE_NAME}`} />
 	<meta
 		name="twitter:description"
-		content={data.metadata.excerpt ??
-			'Nehme AI Labs delivers fixed-fee architectural audits for on‑prem GenAI stacks—cutting compute cost and hallucination risk with deterministic verification (FlashCheck).'}
+		content={data.metadata.excerpt ?? SITE_DESCRIPTION}
 	/>
 	{#if data.metadata.date}
 		<meta property="article:published_time" content={data.metadata.date} />
@@ -42,9 +39,7 @@
 			'@context': 'https://schema.org',
 			'@type': 'Article',
 			headline: data.metadata.title ?? data.slug,
-			description:
-				data.metadata.excerpt ??
-				'Nehme AI Labs delivers fixed-fee architectural audits for on‑prem GenAI stacks—cutting compute cost and hallucination risk with deterministic verification (FlashCheck).',
+			description: data.metadata.excerpt ?? SITE_DESCRIPTION,
 			datePublished: data.metadata.date,
 			author: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
 			publisher: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },

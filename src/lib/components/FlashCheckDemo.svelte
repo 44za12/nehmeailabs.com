@@ -7,10 +7,36 @@
 	import curatedExamples from '$lib/demo/flashcheck_examples.json';
 
 	/**
-	 * Hardcoded for now (no user controls).
+	 * In-browser demo models.
+	 *
+	 * Notes:
+	 * - These run client-side via Wllama (WASM) loading GGUF from Hugging Face.
+	 * - Keep them small/quantized so the demo stays responsive.
 	 */
-	const FLASHCHECK_HF_REPO = 'nehmeailabs-org/nehme-flashcheck-270m';
-	const FLASHCHECK_HF_FILE = 'nehme-flashcheck-270m.Q8_0.gguf';
+	type DemoModel = {
+		id: '270m' | '1b';
+		label: string;
+		repo: string;
+		file: string;
+		note: string;
+	};
+
+	const DEMO_MODELS: DemoModel[] = [
+		{
+			id: '270m',
+			label: 'FlashCheck‑270M (Instant)',
+			repo: 'nehmeailabs-org/nehme-flashcheck-270m',
+			file: 'nehme-flashcheck-270m.Q8_0.gguf',
+			note: 'Fast, lightweight browser-side verifier.'
+		},
+		{
+			id: '1b',
+			label: 'FlashCheck‑1B (High Precision)',
+			repo: 'nehmeailabs-org/nehme-flashcheck-1b',
+			file: 'nehme-flashcheck-1b.Q8_0.gguf',
+			note: 'Higher-precision model; larger download and longer first run.'
+		}
+	];
 
 	const SYSTEM_MESSAGE =
 		`You are a fact checking model developed by NehmeAILabs. Determine whether the provided claim is consistent with the corresponding document. Consistency in this context implies that all information presented in the claim is substantiated by the document. If not, it should be considered inconsistent. Please assess the claim's consistency with the document by responding with either "Yes" or "No".`;
@@ -50,6 +76,9 @@
 
 	let rawOutput = '';
 	let verdict: 'Yes' | 'No' | null = null;
+
+	let selectedModelId: DemoModel['id'] = '270m';
+	$: selectedModel = DEMO_MODELS.find((m) => m.id === selectedModelId) ?? DEMO_MODELS[0];
 
 	const normalizeVerdict = (text: string): 'Yes' | 'No' | null => {
 		const cleaned = text
@@ -93,7 +122,7 @@
 		rawOutput = '';
 
 		try {
-			await wllama.loadModelFromHF(FLASHCHECK_HF_REPO, FLASHCHECK_HF_FILE, {
+			await wllama.loadModelFromHF(selectedModel.repo, selectedModel.file, {
 				progressCallback: ({ loaded, total }: Progress) => {
 					progress = { loaded, total };
 				}
@@ -192,12 +221,35 @@
 		Paste a document and a claim. The verifier responds with <strong>Yes</strong> or <strong>No</strong>.
 	</p>
 	<p class="demo-note">
-		Note: this demo runs directly in your browser. The first verification may take a moment while the model loads.
-		Your document/claim stays on your device.
+		Select a model and verify a claim against a source document.
+		<strong>These lightweight models run in your browser</strong> (your text stays on-device).
+		For enterprise-grade accuracy (97% policy adherence / 92% RAG), request the <strong>FlashCheck‑4B</strong> API.
 	</p>
 
 	<div class="demo-shell">
 		<div class="demo-left">
+			<div class="demo-field">
+				<div class="demo-label">Select Model</div>
+				<select
+					class="demo-select"
+					bind:value={selectedModelId}
+					disabled={isLoading || isVerifying}
+					on:change={() => {
+						// Force reload on next verify when switching models.
+						modelLoaded = false;
+						status = 'Idle';
+						progress = null;
+						verdict = null;
+						rawOutput = '';
+					}}
+				>
+					{#each DEMO_MODELS as m (m.id)}
+						<option value={m.id}>{m.label}</option>
+					{/each}
+				</select>
+				<div class="demo-model-note">{selectedModel.note}</div>
+			</div>
+
 			<div class="demo-examples">
 				<button class="demo-chip" type="button" on:click={loadRandomExample} disabled={isLoading || isVerifying}>
 					Random example
@@ -316,6 +368,22 @@
 	.demo-field {
 		display: grid;
 		gap: 0.5rem;
+	}
+
+	.demo-select {
+		width: 100%;
+		background: var(--bg-primary);
+		border: 1px solid var(--border);
+		color: var(--text-primary);
+		border-radius: 4px;
+		padding: 0.6rem 0.75rem;
+		font: inherit;
+	}
+
+	.demo-model-note {
+		color: var(--text-tertiary);
+		font-size: 0.95rem;
+		line-height: 1.45;
 	}
 
 	.demo-label {
