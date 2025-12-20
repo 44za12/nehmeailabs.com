@@ -22,7 +22,9 @@
 
 <header class="main-header">
 	<div class="container">
-		<a class="logo" href="/">Nehme AI Labs</a>
+		<a class="logo" href="/" aria-label="Nehme AI Labs">
+			<img class="logo-mark" src="/logo.png" alt="Nehme AI Labs logo" width="170" height="50" />
+		</a>
 		<nav class="main-nav" aria-label="Main">
 			<button
 				type="button"

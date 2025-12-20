@@ -60,10 +60,25 @@ body {
 }
 
 .logo {
-    font-size: 1.25rem;
-    font-weight: 800;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     color: var(--text-primary);
     text-decoration: none;
+    line-height: 1;
+    min-height: 50px;
+}
+
+.logo-mark {
+    height: 50px; /* render at the logo's native height */
+    width: auto;
+    max-width: 170px; /* logo.png is 170x50 */
+    flex: 0 0 auto;
+    object-fit: contain;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
 }
 
 .main-nav a {
@@ -847,6 +862,16 @@ p {
         max-width: calc(100% - 2rem);
         text-align: center;
         word-break: break-word;
+    }
+
+    /* Keep header compact on mobile (square logo + hamburger) */
+    .logo {
+        min-height: 50px;
+    }
+
+    .logo-mark {
+        height: 50px;
+        max-width: min(170px, 55vw);
     }
 }
 
