@@ -136,8 +136,8 @@
 		<div class="section-content wide">
 			<div class="solution-grid">
 				<div class="solution-item fade-in" use:inview data-delay="0">
-					<div class="solution-icon">01</div>
-					<h3 class="solution-headline">We Don't Consult; We Audit.</h3>
+					<div class="solution-icon">I</div>
+					<h3 class="solution-headline">We Audit</h3>
 					<p class="solution-text">
 						A two-week, fixed-fee Architectural Audit. This is a diagnostic, not an open-ended engagement. We
 						identify the inefficiencies. You receive a blueprint.
@@ -145,8 +145,8 @@
 				</div>
 
 				<div class="solution-item fade-in" use:inview data-delay="150">
-					<div class="solution-icon">02</div>
-					<h3 class="solution-headline">We Don't Tweak; We Re-Architect.</h3>
+					<div class="solution-icon">II</div>
+					<h3 class="solution-headline">We Re-Architect</h3>
 					<p class="solution-text">
 						First-principles thinking. We don't optimize what shouldn't exist. We replace a sledgehammer with a
 						nutcracker. We replace monolithic models with a fleet of specialists.
@@ -154,8 +154,8 @@
 				</div>
 
 				<div class="solution-item fade-in" use:inview data-delay="300">
-					<div class="solution-icon">03</div>
-					<h3 class="solution-headline">We Don't Propose; We Guarantee.</h3>
+					<div class="solution-icon">III</div>
+					<h3 class="solution-headline">We Guarantee</h3>
 					<p class="solution-text">
 						A clear, actionable blueprint to slash compute costs by a minimum of 30-60%. Not a proposal. A
 						guarantee backed by architectural rigor.
