@@ -218,10 +218,10 @@
 <section class="benchmark-section" id="demo">
 	<h2 class="benchmark-title">Try It</h2>
 	<p class="benchmark-intro">
-		Paste a document and a claim. The verifier responds with <strong>Yes</strong> or <strong>No</strong>.
+		Paste retrieved context and a generated claim. The verifier returns a deterministic <strong>Yes</strong>/<strong>No</strong> groundedness signal.
 	</p>
 	<p class="demo-note">
-		Select a model and verify a claim against a source document.
+		Select a model and verify whether a claim is supported by the provided context.
 		<strong>These lightweight models run in your browser</strong> (your text stays on-device).
 		For enterprise-grade accuracy (97% policy adherence / 92% RAG), request the <strong>FlashCheck‑4B</strong> API.
 	</p>

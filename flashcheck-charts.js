@@ -100,10 +100,8 @@ function createDominanceChart() {
     const data = [
         { model: 'Nehme-AI-FlashCheck-1B', average: 81.9, custom: true },
         { model: 'Bespoke-Minicheck-7B', average: 77.4 },
-        { model: 'Claude-3.5 Sonnet', average: 77.2 },
         { model: 'Granite Guardian 3.3', average: 76.5 },
         { model: 'Mistral-Large 2', average: 76.5 },
-        { model: 'gpt-4o-2024-05-13', average: 75.9 },
         { model: 'FactCG-DeBERTa-L', average: 75.6 },
         { model: 'Qwen2.5-72B-Instruct', average: 75.6 },
         { model: 'Nehme-AI-FlashCheck-270M', average: 75.5, custom: true },

@@ -60,17 +60,17 @@
 	<title>Nehme AI Labs — Ruthlessly Efficient AI Architecture</title>
 	<meta
 		name="description"
-		content="Nehme AI Labs delivers fixed-fee architectural audits for on‑prem GenAI stacks—cutting compute cost and failure risk with surgical interventions. FlashCheck is our RAG hallucination detector."
+		content="Nehme AI Labs delivers fixed-fee architectural audits for on‑prem GenAI stacks—cutting compute cost and failure risk with surgical interventions. FlashCheck is our retrieval-grounded factuality verifier for RAG."
 	/>
 	<meta property="og:title" content="Nehme AI Labs" />
 	<meta
 		property="og:description"
-		content="Fixed-fee architectural audits for on‑prem GenAI stacks—cut compute cost and reduce failure risk. FlashCheck is our RAG hallucination detector."
+		content="Fixed-fee architectural audits for on‑prem GenAI stacks—cut compute cost and reduce failure risk. FlashCheck is our retrieval-grounded factuality verifier for RAG."
 	/>
 	<meta property="twitter:title" content="Nehme AI Labs" />
 	<meta
 		property="twitter:description"
-		content="Fixed-fee architectural audits for on‑prem GenAI stacks—cut compute cost and reduce failure risk. FlashCheck is our RAG hallucination detector."
+		content="Fixed-fee architectural audits for on‑prem GenAI stacks—cut compute cost and reduce failure risk. FlashCheck is our retrieval-grounded factuality verifier for RAG."
 	/>
 </svelte:head>
 
@@ -189,14 +189,14 @@
 					<div class="solution-icon">1B</div>
 					<h3 class="solution-headline">FlashCheck‑Lite (1B)</h3>
 					<p class="solution-text"><strong>Use case:</strong> High-volume filtering, internal tools.</p>
-					<p class="solution-text"><strong>Performance:</strong> Beats GPT‑4o on RAG.</p>
+					<p class="solution-text"><strong>Performance:</strong> Competitive with much larger general‑purpose baselines on RAG Truth.</p>
 					<p class="solution-text"><strong>Status:</strong> Apache 2.0 (Hugging Face).</p>
 				</div>
 				<div class="solution-item fade-in" use:inview data-delay="300">
 					<div class="solution-icon">4B</div>
 					<h3 class="solution-headline">FlashCheck‑Max (4B)</h3>
 					<p class="solution-text"><strong>Use case:</strong> Regulated industries (finance, legal, health), customer-facing chatbots.</p>
-					<p class="solution-text"><strong>Performance:</strong> 91.7% RAG accuracy. The ceiling of hallucination detection.</p>
+					<p class="solution-text"><strong>Performance:</strong> 91.7% RAG Truth. The ceiling of groundedness verification.</p>
 					<p class="solution-text"><strong>Status:</strong> Commercial License / API.</p>
 				</div>
 			</div>

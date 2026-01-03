@@ -79,22 +79,6 @@
 			'RAG Truth': 84.0
 		},
 		{
-			model: 'Claude-3.5 Sonnet',
-			size: '-',
-			average: 77.2,
-			CNN: 67.6,
-			XSum: 75.1,
-			MediaS: 73.4,
-			MeetB: 84.6,
-			WICE: 77.7,
-			REVEAL: 89.1,
-			ClaimV: 71.4,
-			FactCk: 77.8,
-			ExpertQA: 60.9,
-			LFQA: 85.6,
-			'RAG Truth': 86.1
-		},
-		{
 			model: 'Granite Guardian 3.3',
 			size: '8B',
 			average: 76.5,
@@ -125,22 +109,6 @@
 			ExpertQA: 60.8,
 			LFQA: 87.0,
 			'RAG Truth': 85.9
-		},
-		{
-			model: 'gpt-4o-2024-05-13',
-			size: '-',
-			average: 75.9,
-			CNN: 68.1,
-			XSum: 76.8,
-			MediaS: 71.4,
-			MeetB: 79.8,
-			WICE: 78.5,
-			REVEAL: 86.5,
-			ClaimV: 69.0,
-			FactCk: 77.5,
-			ExpertQA: 59.6,
-			LFQA: 83.6,
-			'RAG Truth': 84.3
 		},
 		{
 			model: 'FactCG-DeBERTa-L',
@@ -241,8 +209,6 @@
 	];
 
 	const displayName = (model: string) => {
-		if (model === 'gpt-4o-2024-05-13') return 'GPT-4o';
-		if (model === 'Claude-3.5 Sonnet') return 'Claude 3.5 Sonnet';
 		return model;
 	};
 
@@ -275,17 +241,17 @@
 	<title>FlashCheck — Enterprise RAG Hallucination Detection | Nehme AI Labs</title>
 	<meta
 		name="description"
-		content="Trust, verified. Nehme-FlashCheck is the world’s most accurate RAG hallucination detector—built for enterprise pipelines."
+		content="Trust, verified. Nehme-FlashCheck is a retrieval-grounded factuality verifier—built for enterprise RAG pipelines."
 	/>
 	<meta property="og:title" content="FlashCheck — Enterprise RAG Hallucination Detection" />
 	<meta
 		property="og:description"
-		content="Stop your AI from lying to customers. FlashCheck delivers enterprise-grade hallucination detection for RAG pipelines."
+		content="Enforce groundedness in RAG. FlashCheck classifies whether a claim is supported by retrieved context."
 	/>
 	<meta property="twitter:title" content="FlashCheck — Enterprise RAG Hallucination Detection" />
 	<meta
 		property="twitter:description"
-		content="Stop your AI from lying to customers. FlashCheck delivers enterprise-grade hallucination detection for RAG pipelines."
+		content="Enforce groundedness in RAG. FlashCheck classifies whether a claim is supported by retrieved context."
 	/>
 	<link rel="stylesheet" href="/flashcheck.css" />
 </svelte:head>
@@ -295,11 +261,11 @@
 		<header class="flashcheck-header">
 			<h1 class="flashcheck-title">Trust, Verified.</h1>
 			<p class="flashcheck-subtitle">
-				The World’s Most Accurate RAG Hallucination Detector.
+				Retrieval‑Grounded Factuality Verification for Production RAG.
 			</p>
 			<p class="benchmark-intro" style="max-width: 980px; margin: 1.25rem auto 0; text-align: center">
-				Stop your AI from lying to customers. <strong>Nehme-FlashCheck-4B</strong> delivers <strong>92% accuracy</strong> on RAG pipelines,
-				outperforming GPT‑4o and Claude 3.5 Sonnet at <strong>&lt;1% of the cost</strong>.
+				Stop ungrounded generations from shipping. <strong>Nehme-FlashCheck-4B</strong> delivers <strong>92% accuracy</strong> on RAG pipelines,
+				outperforming larger general‑purpose model baselines at <strong>&lt;1% of the cost</strong>.
 			</p>
 		</header>
 
@@ -311,8 +277,9 @@
 
 			<div class="section-content">
 				<p class="large-text">
-					RAG failures aren’t a product bug—they’re a brand risk. FlashCheck verifies generated claims against your retrieved
-					context and returns a deterministic <strong>Yes</strong>/<strong>No</strong> signal your pipeline can enforce.
+					RAG failures aren’t a product bug, they’re a brand risk. FlashCheck performs <strong>groundedness verification</strong>:
+					it classifies whether each generated <strong>claim</strong> is supported by the retrieved <strong>context</strong>, returning a deterministic
+					<strong>Yes</strong>/<strong>No</strong> signal your pipeline can enforce.
 				</p>
 
 				<div class="solution-grid center-last">
@@ -321,7 +288,7 @@
 						<h3 class="solution-headline">Ship RAG with Guardrails</h3>
 						<p class="solution-text">
 							Run FlashCheck after generation. If a claim isn’t supported by the retrieved context, FlashCheck returns “No”
-							and your system can block, re-retrieve, or regenerate.
+							and your system can block, re‑retrieve, regenerate, or route to a human review queue.
 						</p>
 					</div>
 
@@ -367,14 +334,14 @@
 					<div class="solution-icon">1B</div>
 					<h3 class="solution-headline">FlashCheck‑Lite (1B)</h3>
 					<p class="solution-text"><strong>Use case:</strong> High-volume filtering, internal tools.</p>
-					<p class="solution-text"><strong>Performance:</strong> Beats GPT‑4o on RAG.</p>
+					<p class="solution-text"><strong>Performance:</strong> Competitive with much larger general‑purpose baselines on RAG Truth.</p>
 					<p class="solution-text"><strong>Status:</strong> Apache 2.0 (Hugging Face).</p>
 				</div>
 				<div class="solution-item">
 					<div class="solution-icon">4B</div>
 					<h3 class="solution-headline">FlashCheck‑Max (4B)</h3>
 					<p class="solution-text"><strong>Use case:</strong> Regulated industries (finance, legal, health), customer-facing chatbots.</p>
-					<p class="solution-text"><strong>Performance:</strong> 91.7% RAG accuracy. The ceiling of hallucination detection.</p>
+					<p class="solution-text"><strong>Performance:</strong> 91.7% RAG Truth. The ceiling of groundedness verification.</p>
 					<p class="solution-text"><strong>Status:</strong> Commercial License / API.</p>
 				</div>
 			</div>

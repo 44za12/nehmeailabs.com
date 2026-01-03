@@ -1,12 +1,12 @@
 ---
 title: 'Introducing FlashCheck: Enterprise RAG Hallucination Detection'
 date: '2025-12-14'
-excerpt: 'Trust, verified. FlashCheck is a purpose-built RAG hallucination detector that returns a deterministic “Yes/No” answer to verify claims against retrieved context.'
+excerpt: 'Trust, verified. FlashCheck is a purpose-built retrieval-grounded factuality verifier that returns a deterministic “Yes/No” decision to verify claims against retrieved context.'
 ---
 
 ## The Trust Deficit in AI
 
-Large Language Models (LLMs) are powerful, but they have a fundamental flaw: they hallucinate. They generate text that sounds plausible but is factually incorrect, detached from source material, or simply nonsensical. For consumer-facing chatbots, this is an amusing quirk. For enterprise applications, it's a catastrophic failure of reliability that erodes trust and introduces unacceptable risk.
+Large Language Models (LLMs) are powerful, but they have a fundamental failure mode: ungrounded generation. They can produce text that reads well but is not supported by the available evidence, detached from source material, or simply incorrect. For consumer-facing chatbots, this is an amusing quirk. For enterprise applications, it’s a catastrophic reliability failure that erodes trust and introduces unacceptable risk.
 
 The industry's default response has been to throw more resources at the problem—building ever-larger models with hundreds of billions of parameters. This is the equivalent of using a sledgehammer to crack a nut. It's a brute-force, capital-intensive approach that fails to address the core architectural issue. You don't need a model that knows Shakespeare to verify an invoice.
 
